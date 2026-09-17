@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources | Triton Robotics</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 2rem;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  a.back {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  /* --- Search bar --- */
+  #controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  #search {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    width: 260px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  #showAllBtn {
+    padding: 0.5rem 1rem;
+    background: rgb(186, 189, 237);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+
+  #showAllBtn:hover {
+    background: rgb(160, 163, 220);
+  }
+
+  #matchCount {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* --- Image + pin markers --- */
+  #board-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  #board-img {
+    height: 800px;
+    display: block;
+    max-width: 100%;
+  }
+
+  .pin-marker {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    margin-top: -8px;
+    border-radius: 50%;
+    background: rgba(186, 189, 237, 0.85);
+    border: 2px solid #4a4d9e;
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.1s ease;
+  }
+
+  .pin-marker:hover,
+  .pin-marker.highlight {
+    background: rgb(255, 200, 80);
+    border-color: #b8860b;
+    transform: scale(1.4);
+    z-index: 5;
+  }
+
+  .pin-marker.dimmed {
+    opacity: 0.25;
+  }
+
+  /* --- Tooltip --- */
+  #tooltip {
+    position: absolute;
+    display: none;
+    background: #1a1a2e;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    max-width: 240px;
+    pointer-events: none;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  #tooltip .pin-name {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  #tooltip ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+</style>
+</head>
+<body>
+
+  <a class="back" href="index.html">&larr; Back to home</a>
+  <h1>Nucleo H533RE Pinout</h1>
+
+  <div id="controls">
+    <input type="text" id="search" placeholder="Search pin name or function (e.g. PA5, SPI, ADC)...">
+    <button id="showAllBtn">Show All</button>
+    <span id="matchCount"></span>
+  </div>
+
+  <div id="board-wrapper">
+    <img id="board-img" src="assets/nucleo/Nucleo_H533RE.png" alt="Nucleo H533RE top view">
+    <div id="tooltip"></div>
+    <!-- pin markers are injected here by JS -->
+  </div>
+
+  <script>
+    // ---------------------------------------------------------------
+    // PIN DATA
+    // x and y are PERCENTAGES of the image width/height (0-100),
+    // NOT pixels. This keeps markers aligned even if the image is
+    // resized or viewed on a different screen.
+    //
+    // To find a pin's x/y: open the image in an image editor (or
+    // even MS Paint / Preview), hover the pin, note the pixel
+    // coordinates, then:
+    //   x% = (pixel_x / image_width_px)  * 100
+    //   y% = (pixel_y / image_height_px) * 100
+    // ---------------------------------------------------------------
+    const pins = [
+      { name: "PA5", x: 34.0, y: 22.5, functions: ["GPIO", "SPI1_SCK", "LED (on-board, LD1)"] },
+      { name: "PA9", x: 41.0, y: 30.0, functions: ["GPIO", "USART1_TX", "TIM1_CH2"] },
+      { name: "PA10", x: 44.0, y: 30.0, functions: ["GPIO", "USART1_RX", "TIM1_CH3"] },
+      { name: "PB0", x: 60.0, y: 55.0, functions: ["GPIO", "ADC1_IN15", "TIM3_CH3"] },
+      { name: "PC13", x: 20.0, y: 45.0, functions: ["GPIO", "User Button (B1)", "RTC_TAMP"] }
+      // add more pins here following the same pattern
+    ];
+
+    const wrapper = document.getElementById("board-wrapper");
+    const tooltip = document.getElementById("tooltip");
+    const searchInput = document.getElementById("search");
+    const showAllBtn = document.getElementById("showAllBtn");
+    const matchCount = document.getElementById("matchCount");
+
+    // Create a marker element for each pin
+    const markerEls = pins.map(pin => {
+      const el = document.createElement("div");
+      el.className = "pin-marker";
+      el.style.left = pin.x + "%";
+      el.style.top = pin.y + "%";
+      el.dataset.name = pin.name.toLowerCase();
+      el.dataset.functions = pin.functions.join(" ").toLowerCase();
+
+      el.addEventListener("mouseenter", () => showTooltip(pin));
+      el.addEventListener("mousemove", (e) => positionTooltip(e));
+      el.addEventListener("mouseleave", hideTooltip);
+
+      wrapper.appendChild(el);
+      return { el, pin };
+    });
+
+    function showTooltip(pin) {
+      tooltip.innerHTML = `
+        <div class="pin-name">${pin.name}</div>
+        <ul>${pin.functions.map(f => `<li>${f}</li>`).join("")}</ul>
+      `;
+      tooltip.style.display = "block";
+    }
+
+    function positionTooltip(e) {
+      const rect = wrapper.getBoundingClientRect();
+      tooltip.style.left = (e.clientX - rect.left + 15) + "px";
+      tooltip.style.top = (e.clientY - rect.top + 15) + "px";
+    }
+
+    function hideTooltip() {
+      tooltip.style.display = "none";
+    }
+
+    // Search: highlight matches, dim non-matches
+    function runSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      let matches = 0;
+
+      markerEls.forEach(({ el }) => {
+        if (query === "") {
+          el.classList.remove("highlight", "dimmed");
+          return;
+        }
+        const isMatch = el.dataset.name.includes(query) || el.dataset.functions.includes(query);
+        el.classList.toggle("highlight", isMatch);
+        el.classList.toggle("dimmed", !isMatch);
+        if (isMatch) matches++;
+      });
+
+      matchCount.textContent = query === "" ? "" : `${matches} match${matches === 1 ? "" : "es"}`;
+    }
+
+    searchInput.addEventListener("input", runSearch);
+
+    showAllBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      runSearch();
+    });
+  </script>
+
+</body>
+</html>
