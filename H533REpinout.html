@@ -159,20 +159,136 @@
     // Increment x by 4 to go 1 pin to right
     // increment y by
 
-    //Left Group
-    { name: "E5V", x: 8, y: 44, functions: ["External 5 volt power at 500mA"]},
+    //Left Group     
+      // CN7 ODD PINS
+      { name: "PC10", x: 4, y: 38, functions: []},
+      { name: "PC12", x: 4, y: 41, functions: []},
+      { name: "VDD", x: 4, y: 44, functions: []},
+      { name: "BOOT0", x: 4, y: 47, functions: ["BOOT0 is set to ‘0’ by default. It can be set to ‘1’ with a jumper plugged between pin 5 (VDD) and pin 7 (BOOT0) of CN7."]},
+      // { name: "", x: 4, y: 50, functions: []},
+      // { name: "", x: 4, y: 53, functions: []},
+      { name: "PA13", x: 4, y: 56, functions: ["PA13 and PA14 are shared with SWD signals connected to STLINK-V3EC. It is not recommended to use them as I/O pins. By default, they are used as SWD signals (SB40 and SB41 ON)."]},
+      { name: "PA14", x: 4, y: 59, functions: ["PA13 and PA14 are shared with SWD signals connected to STLINK-V3EC. It is not recommended to use them as I/O pins. By default, they are used as SWD signals (SB40 and SB41 ON)."]},
+      { name: "PA15", x: 4, y: 62, functions: []},
+      { name: "GND", x: 4, y: 65, functions: ["Ground"], group: "GND"},
+      // { name: "", x: 4, y: 68, functions: []},
+      { name: "PC13", x: 4, y: 71, functions: ["USER button(DEFAULT)/IO"]},
+      { name: "PC14", x: 4, y: 74, functions: ["LSE CLK (DEFAULT)/IO", "OSC32_IN"]},
+      { name: "PC15", x: 4, y: 77, functions: ["LSE LCK (DEFAULT)/IO", "OSC32_OUT"]},
+      { name: "PF0", x: 4, y: 80, functions: ["HSE CLK (DEFAULT)/I", "OSC_IN"]},
+      { name: "PF1", x: 4, y: 83, functions: ["HSE LCK (DEFAULT)/O", "OSC_OUT"]},
+      { name: "VBAT", x: 4, y: 86, functions: ["Power supply for RTC when VDD is not present"]},
+      { name: "PC2", x: 4, y: 89, functions: ["IO"]},
+      { name: "PC3", x: 4, y: 92, functions: ["IO"]},
 
+      // CN7 EVEN PINS
+      { name: "PC11", x: 8, y: 38, functions: []},
+      { name: "PD2", x: 8, y: 41, functions: []},
+      { name: "E5V", x: 8, y: 44, functions: ["External 5 volt power at 500mA"]},
+      { name: "GND", x: 8, y: 47, functions: ["Ground"], group: "GND"},
+      // { name: "", x: 8, y: 50, functions: []},
+      { name: "IOREF", x: 8, y: 53, functions: []},
+      { name: "NRST", x: 8, y: 56, functions: ["STM32H5 RESET"], group: "NRST"},
+      { name: "3V3", x: 8, y: 59, functions: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
+      { name: "5V", x: 8, y: 62, functions: []},
+      { name: "GND", x: 8, y: 65, functions: ["Ground"], group: "GND"},
+      { name: "GND", x: 8, y: 68, functions: ["Ground"], group: "GND"},
+      { name: "VIN", x: 8, y: 71, functions: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
+      // { name: "", x: 8, y: 74, functions: []},
+      { name: "PA0", x: 8, y: 77, functions: ["ARD_A0–ADC1_INP0 (DEFAULT)/User button"]},
+      { name: "PA1", x: 8, y: 80, functions: ["ARD_A1–ADC1_INP1"]},
+      { name: "PA2(*)/PB1(*)", x: 8, y: 83, functions: ["ARD_A2–ADC1_INP14/STLINK_TX (T_VCP_TX)", "USART2_TX"]},
+      { name: "PB0", x: 8, y: 86, functions: []},
+      { name: "PC1(DEFAULT)/PB7", x: 8, y: 89, functions: []},
+      { name: "PC0(DEFAULT)/PB6", x: 8, y: 92, functions: []},
+      
+      // CN6 POWER
+      { name: "", x: 15.0, y: 50, functions: ["5V_IN test"]},
+      { name: "IOREF", x: 15.0, y: 53, functions: ["3V3 ref"]},
+      { name: "NRST", x: 15.0, y: 56, functions: ["STM32H5 RESET"], group: "NRST"},
+      { name: "3V3", x: 15.0, y: 59, functions: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
+      { name: "5V", x: 15.0, y: 62, functions: ["5V input"]},
+      { name: "GND", x: 15.0, y: 66, functions: ["Ground"], group: "GND"},
+      { name: "GND", x: 15.0, y: 68.7, functions: ["Ground"], group: "GND"},
+      { name: "VIN", x: 15.0, y: 71.5, functions: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
+      
+      // CN8 ANALOG
+      { name: "PA0", x: 15.0, y: 77, functions: ["ADC1_INP0"]},
+      { name: "PA1", x: 15.0, y: 80, functions: ["ADC1_INP1"]},
+      { name: "PA2/PB1", x: 15.0, y: 83, functions: ["ADC1_INP14"]},
+      { name: "PB0", x: 15.0, y: 86, functions: ["ADC1_INP9"]},
+      { name: "PC1(default)/PB7", x: 15.0, y: 89.5, functions: ["ADC1_INP11 (DEFAULT)/I2C1_SDA"]},
+      { name: "PC0(default)/PB6", x: 15.0, y: 92.5, functions: ["ADC1_INP10 (DEFAULT)/I2C1_SCL "]},
 
     // Right Group
 
-        // Arduino Top
+        // CN5 DIGITAL
         { name: "PB6", x: 84, y: 38.5, functions: ["I2C1_SCL"], group: "PB6"},
         { name: "PB7", x: 84, y: 41.5, functions: ["I2C1_SDA"], group: "PB7"},
+        { name: "AVDD", x: 84, y: 45, functions: ["AVDD"], group: "AVDD"},
+        { name: "GND", x: 84, y: 48, functions: ["Ground"], group: "GND"},
+        { name: "PA5", x: 84, y: 51, functions: ["SPI1_SCK"]},
+        { name: "PA6", x: 84, y: 54, functions: ["SPI1_MISO"]},
+        { name: "PA7", x: 84, y: 57, functions: ["TIM3_CH2", "SPI1_MOSI"]},
+        { name: "PC9", x: 84, y: 60, functions: ["TIM3_CH4", "SPI1_NSS"]},
+        { name: "PC6", x: 84, y: 63, functions: ["TIM3_CH1"]},
+        { name: "PC7", x: 84, y: 66, functions: ["IO"], group: "IO"},
+
+        // CN9 DIGITAL
+        { name: "PA8", x: 84, y: 71, functions: ["IO"], group: "IO"},
+        { name: "PB10", x: 84, y: 74, functions: ["TIM2_CH3"]},
+        { name: "PB4", x: 84, y: 77, functions: ["TIM1_CH2"]},
+        { name: "PB5", x: 84, y: 80, functions: ["IO"], group: "IO"},
+        { name: "PB3", x: 84, y: 83, functions: ["TIM2_CH2"]},
+        { name: "PA10(*)/PC8(*)", x: 84, y: 86, functions: ["IO"], group: "IO"},
+        { name: "PB14(DEFAULT)/PA4(*)/P2(*)", x: 84, y: 89, functions: ["UART1_TX/USART3_TX(*)/USART2_TX(*)"]},
+        { name: "PB15(DEFAULT)/PA3(*)", x: 84, y: 92, functions: ["UART1_TX/USART3_TX(*)/USART2_TX(*)"]},
+
+
+        // CN10 ODD PINS
+        // { name: "", x: 91.5, y: 38, functions: []},
+        { name: "PB6", x: 91.5, y: 41, functions: []},
+        { name: "PB7", x: 91.5, y: 44, functions: []},
+        { name: "AVDD", x: 91.5, y: 47, functions: ["AVDD is connected to VDD_MCU by default (R33 fitted)."], group: "AVDD"},
+        { name: "GND", x: 91.5, y: 50, functions: ["Ground"], group: "GND"},
+        { name: "PA5", x: 91.5, y: 53, functions: []},
+        { name: "PA6", x: 91.5, y: 56, functions: []},
+        { name: "PA7", x: 91.5, y: 59, functions: []},
+        { name: "PC9", x: 91.5, y: 62, functions: []},
+        { name: "PC6", x: 91.5, y: 65, functions: []},
+        { name: "PC7(*)", x: 91.5, y: 68, functions: []},
+        { name: "PA8(*)", x: 91.5, y: 71, functions: []},
+        { name: "PB10", x: 91.5, y: 74, functions: []},
+        { name: "PB4", x: 91.5, y: 77, functions: []},
+        { name: "PB5", x: 91.5, y: 80, functions: []},
+        { name: "PB3", x: 91.5, y: 83, functions: []},
+        { name: "PA10/PB8", x: 91.5, y: 86, functions: []},
+        { name: "PB14", x: 91.5, y: 89, functions: []},
+        { name: "PB15", x: 91.5, y: 92, functions: []},
+
+        // CN10 EVEN PINS
+        { name: "PC8(*)/PA9(*)", x: 95, y: 38, functions: []},
+        { name: "PA10(*)", x: 95, y: 41, functions: []},
+        { name: "PC5", x: 95, y: 44, functions: []},
+        { name: "VBUS_STLK", x: 95, y: 47, functions: ["VBUS_STLK is the 5 V power from the STLINK-V3EC USB connector. It rises before the 5 V of the STM32H5 Nucleo-64 board."]},
+        // { name: "", x: 95, y: 50, functions: []},
+        { name: "PA12", x: 95, y: 53, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+        { name: "PA11", x: 95, y: 56, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+        { name: "PB12", x: 95, y: 59, functions: []},
+        // { name: "", x: 95, y: 62, functions: []},
+        { name: "GND", x: 95, y: 65, functions: ["Ground"], group: "GND"},
+        { name: "PB2", x: 95, y: 68, functions: []},
+        { name: "PB1(*)", x: 95, y: 71, functions: []},
+        { name: "PB15", x: 95, y: 74, functions: []},
+        { name: "PB14", x: 95, y: 77, functions: []},
+        { name: "PB13", x: 95, y: 80, functions: []},
+        { name: "AGND", x: 95, y: 83, functions: []},
+        { name: "PC4", x: 95, y: 86, functions: []},
+        { name: "PB8", x: 95, y: 89, functions: []},
+        // { name: "", x: 95, y: 92, functions: []},
 
 
 
-
-    { name: "GND", x: 15.0, y: 69, functions: ["Ground"], group: "GND" },
 
 
     ];
