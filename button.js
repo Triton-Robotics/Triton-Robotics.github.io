@@ -23,15 +23,15 @@
 
     //Left Group     
       // CN7 ODD PINS
-      { name: "PC10", x: 30, y: 303, functions: ["IO", "I3C2_SCL" , "SPI3_SCK/I2S3_CK" , "USART3_TX"]}, // HERE!! FOR FUNCTIONS
-      { name: "PC12", x: 30, y: 326.5, functions: ["IO", "LPTIM2_CH2", "SPI3_MOSI/I2S3_SDO", "USART3_CK"], group: "IO"},
-      { name: "VDD", x: 30, y: 350, functions: ["VDD voltage supply"]},
-      { name: "BOOT0", x: 30, y: 373.5, functions: ["BOOT0"]},
-      { name: "NC", x: 30, y: 397, functions: []},
-      { name: "NC", x: 30, y: 420.5, functions: []},
-      { name: "PA13", x: 30, y: 444, functions: ["T_SWDIO"]},
-      { name: "PA14", x: 30, y: 467.5, functions: ["T_SWCLK"]},
-      { name: "PA15", x: 30, y: 491, functions: ["T_JTDI", "TIM2_CH1", "SPI1_NSS/I2S1_WS", "SPI3_NSS/I2S3_WS", "USART1_TX", "FMC_NBL1", "TIM2_ETR"]},
+      { name: "PC10", x: 30, y: 303}, // HERE!! FOR FUNCTIONS
+      { name: "PC12", x: 30, y: 326.5},
+      { name: "VDD", x: 30, y: 350},
+      { name: "BOOT0", x: 30, y: 373.5},
+      { name: "NC", x: 30, y: 397},
+      { name: "NC", x: 30, y: 420.5},
+      { name: "PA13", x: 30, y: 444},
+      { name: "PA14", x: 30, y: 467.5},
+      { name: "PA15", x: 30, y: 491},
       { name: "GND", x: 30, y: 514.5, functions: ["Ground"], group: "GND"},
       { name: "NC", x: 30, y: 538, functions: []},
       { name: "PC13", x: 30, y: 561.5, functions: ["USER button (DEFAULT)", "IO"]},
@@ -238,37 +238,7 @@
       { name: "NC", location: right_right_pinout_div, functions: []},
     ];
 
-    const wrapper = document.getElementById("board-wrapper");
-    const tooltip = document.getElementById("tooltip");
-    const searchInput = document.getElementById("search");
-    const showAllBtn = document.getElementById("showAllBtn");
-    const matchCount = document.getElementById("matchCount");
-
-    // Create a marker element for each pin
-    const markerEls = pins.map(pin => {
-      const boardDiv = document.getElementById("board-wrapper");
-      const el = document.createElement("div");
-      boardDiv.appendChild(el);
-      el.className = "pin-marker";
-      el.style.left = pin.x + "px";
-      el.style.top = pin.y + "px";
-      el.dataset.name = pin.name.toLowerCase();
-      el.dataset.functions = pin.functions.join(" ").toLowerCase();
-
-    el.addEventListener("mouseenter", () => {
-        showTooltip(pin);
-        highlightGroup(pin);
-    });
-
-    el.addEventListener("mousemove", (e) => positionTooltip(e));
-    el.addEventListener("mouseleave", () => {
-        hideTooltip();
-        clearGroupHighlight();
-    });
-
-      wrapper.appendChild(el);
-      return { el, pin };
-    });
+    const pin_to_info = new Map();
 
     // Pin Button Info
     const pinInfoEls = pin_info.map(pin => {
@@ -276,6 +246,13 @@
       // Creates and adds each function for the pin
       const divLoc = document.getElementById(pin.location);
       const el = document.createElement("div");
+
+      if(!pin_to_info.has(pin.name)) {
+        pin_to_info.set(pin.name, [el]);
+      } else {
+        pin_to_info.get(pin.name).push(el);
+      }
+
       pin.functions.forEach((element, index, array) => {
         const pinFunc = document.createElement("button");
         pinFunc.classList.add('pin-element');
@@ -292,47 +269,97 @@
         const noteEl = document.createElement("span");
         noteEl.textContent = noteTxt;
         noteEl.classList.add('tooltiptext');
-        el.classList.add('tooltip')
+        el.classList.add('tooltip');
         el.appendChild(noteEl);
       }
 
+      el.addEventListener("mouseenter", () => {
+          highlightGroup(pin);
+      });
+
+      el.addEventListener("mouseleave", () => {
+          clearGroupHighlight();
+      });
+
       el.classList.add('pin-info');
       divLoc.appendChild(el);
+      return { el, pin };
     });
 
-    function showTooltip(pin) {
-      const groupNote = pin.group
-        ? `<div style="opacity:0.7; font-size:0.75rem; margin-top:0.25rem;">connected to ${pins.filter(p => p.group === pin.group).length - 1} other ${pin.group} pin(s)</div>`
-        : "";
-      tooltip.innerHTML = `
-        <div class="pin-name">${pin.name}</div>
-        <ul>${pin.functions.map(f => `<li>${f}</li>`).join("")}</ul>
-        ${groupNote}
-      `;
-      tooltip.style.display = "block";
-    }
+    const wrapper = document.getElementById("board-wrapper");
+    const tooltip = document.getElementById("tooltip");
+    const searchInput = document.getElementById("search");
+    const showAllBtn = document.getElementById("showAllBtn");
+    const matchCount = document.getElementById("matchCount");
 
-    function positionTooltip(e) {
-      const rect = wrapper.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left + 15) + "px";
-      tooltip.style.top = (e.clientY - rect.top + 15) + "px";
-    }
+    // Create a marker element for each pin
+    const markerEls = pins.map(pin => {
+      const boardDiv = document.getElementById("board-wrapper");
+      const el = document.createElement("div");
 
-    function hideTooltip() {
-      tooltip.style.display = "none";
-    }
+      if(!pin_to_info.has(pin.name)) {
+        pin_to_info.set(pin.name, [el]);
+      } else {
+        pin_to_info.get(pin.name).push(el);
+      }
+
+      boardDiv.appendChild(el);
+      el.className = "pin-marker";
+      el.style.left = pin.x + "px";
+      el.style.top = pin.y + "px";
+      el.dataset.name = pin.name.toLowerCase();
+
+    el.addEventListener("mouseenter", () => {
+        // showTooltip(pin);
+        highlightGroup(pin);
+    });
+
+    // el.addEventListener("mousemove", (e) => positionTooltip(e));
+    el.addEventListener("mouseleave", () => {
+        // hideTooltip();
+        clearGroupHighlight();
+    });
+
+      wrapper.appendChild(el);
+      return { el, pin };
+    });
+
+    // function showTooltip(pin) {
+    //   const groupNote = pin.group
+    //     ? `<div style="opacity:0.7; font-size:0.75rem; margin-top:0.25rem;">connected to ${pins.filter(p => p.group === pin.group).length - 1} other ${pin.group} pin(s)</div>`
+    //     : "";
+    //   tooltip.innerHTML = `
+    //     <div class="pin-name">${pin.name}</div>
+    //     <ul>${pin.functions.map(f => `<li>${f}</li>`).join("")}</ul>
+    //     ${groupNote}
+    //   `;
+    //   tooltip.style.display = "block";
+    // }
+
+    // function positionTooltip(e) {
+    //   const rect = wrapper.getBoundingClientRect();
+    //   tooltip.style.left = (e.clientX - rect.left + 15) + "px";
+    //   tooltip.style.top = (e.clientY - rect.top + 15) + "px";
+    // }
+
+    // function hideTooltip() {
+    //   tooltip.style.display = "none";
+    // }
+
+    let current_highlighted = [];
 
     function highlightGroup(hoveredPin) {
-      if (!hoveredPin.group) return;
-      markerEls.forEach(({ el, pin }) => {
-        if (pin.group === hoveredPin.group) {
-          el.classList.add("group-highlight");
-        }
+      if(!pin_to_info.has(hoveredPin.name)) return;
+
+      pin_to_info.get(hoveredPin.name).forEach(pin => {
+          console.log(pin);
+          pin.classList.add("group-highlight");
+          current_highlighted.push(pin);
       });
     }
  
     function clearGroupHighlight() {
-      markerEls.forEach(({ el }) => el.classList.remove("group-highlight"));
+      current_highlighted.forEach((el) => el.classList.remove("group-highlight"));
     }
 
 
@@ -343,15 +370,16 @@
       const query = searchInput.value.trim().toLowerCase();
       let matches = 0;
 
-      markerEls.forEach(({ el }) => {
+      pinInfoEls.forEach(({ el }) => {
         if (query === "") {
           el.classList.remove("highlight", "dimmed");
           return;
         }
-        const isMatch = el.dataset.name.includes(query) || el.dataset.functions.includes(query);
+        const isMatch = el.dataset.name.includes(query); //|| el.dataset.functions.includes(query);
         el.classList.toggle("highlight", isMatch);
         el.classList.toggle("dimmed", !isMatch);
         if (isMatch) matches++;
+        console.log("Added for " + el.name);
       });
 
       matchCount.textContent = query === "" ? "" : `${matches} match${matches === 1 ? "" : "es"}`;
