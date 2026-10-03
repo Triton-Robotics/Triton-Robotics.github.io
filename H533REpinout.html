@@ -7,16 +7,6 @@
   <link rel="stylesheet" href="stylesheet.css"></link>
 </head>
 <body>
-  
-  <a class="back" href="index.html">&larr; Back to home</a>
-  <h1>Nucleo H533RE Pinout</h1>
-
-  <div id="controls">
-    <input type="text" id="search" placeholder="Search pin name or function (e.g. PA5, SPI, ADC)...">
-    <button id="showAllBtn">Show All</button>
-    <span id="matchCount"></span>
-  </div>
-
   <div id="pinout-wrapper">
     <div id="left-pinout" style="display: flex;">
       <div id="left-left-pinout">
@@ -25,10 +15,21 @@
       </div>
     </div> 
 
-    <div id="board-wrapper">
-      <img id="board-img" src="assets/nucleo/Nucleo_H533RE.png" alt="Nucleo H533RE top view">
-      <div id="tooASDFGltip"></div>
-      <!-- pin markers are injected here by JS -->
+    <div>
+      <a class="back" href="index.html" style="padding-top: 50px;">&larr; Back to home</a>
+      <h1>Nucleo H533RE Pinout</h1>
+
+      <div id="controls">
+        <input type="text" id="search" placeholder="Search pin name or function (e.g. PA5, SPI, ADC)...">
+        <button id="showAllBtn">Show All</button>
+        <span id="matchCount"></span>
+      </div>
+
+      <div id="board-wrapper">
+        <img id="board-img" src="assets/nucleo/Nucleo_H533RE.png" alt="Nucleo H533RE top view">
+        <div id="tooASDFGltip"></div>
+        <!-- pin markers are injected here by JS -->
+      </div>
     </div>
 
     <div id="right-pintout" style="display: flex;">
