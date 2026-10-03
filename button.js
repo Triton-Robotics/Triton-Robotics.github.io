@@ -10,6 +10,13 @@
     //   x% = (pixel_x / image_width_px)  * 100
     //   y% = (pixel_y / image_height_px) * 100
     // ---------------------------------------------------------------
+
+    const left_left_pinout_div = "left-left-pinout";
+    const left_right_pinout_div = "left-right-pinout";
+    const right_left_pinout_div = "right-left-pinout";
+    const right_right_pinout_div = "right-right-pinout";
+    
+
     const pins = [ 
     // Increment x by 4 to go 1 pin to right
     // increment y by
@@ -141,11 +148,94 @@
         { name: "PC4", x: 625, y: 677, functions: []}, // HERE!!! FOR FUNCTIONS
         { name: "PB8", x: 625, y: 700.5, functions: ["IO"], group: "IO"},
         { name: "NC", x: 625, y: 724, functions: []},
+    ];
 
+    const pin_info = [
 
+    //Left Group     
+      // CN7 ODD PINS
+      { name: "PC10", location: left_left_pinout_div, functions: ["IO", "I3C2_SCL" , "SPI3_SCK/I2S3_CK" , "USART3_TX"]}, // HERE!! FOR FUNCTIONS
+      { name: "PC12", location: left_left_pinout_div, functions: ["IO", "LPTIM2_CH2", "SPI3_MOSI/I2S3_SDO", "USART3_CK"], group: "IO"},
+      { name: "VDD", location: left_left_pinout_div, functions: ["VDD voltage supply"]},
+      { name: "BOOT0", location: left_left_pinout_div, functions: ["BOOT0"]},
+      { name: "NC", location: left_left_pinout_div, functions: []},
+      { name: "NC", location: left_left_pinout_div, functions: []},
+      { name: "PA13", location: left_left_pinout_div, functions: ["T_SWDIO"]},
+      { name: "PA14", location: left_left_pinout_div, functions: ["T_SWCLK"]},
+      { name: "PA15", location: left_left_pinout_div, functions: ["T_JTDI", "TIM2_CH1", "SPI1_NSS/I2S1_WS", "SPI3_NSS/I2S3_WS", "USART1_TX", "FMC_NBL1", "TIM2_ETR"]},
+      { name: "GND", location: left_left_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "NC", location: left_left_pinout_div, functions: []},
+      { name: "PC13", location: left_left_pinout_div, functions: ["USER button (DEFAULT)", "IO"]},
+      { name: "PC14", location: left_left_pinout_div, functions: ["LSE CLK", "IO"]},
+      { name: "PC15", location: left_left_pinout_div, functions: ["LSE LCK", "IO"]},
+      { name: "PF0", location: left_left_pinout_div, functions: ["HSE CLK", "I", "I3C2_SDA", "I2C2_SDA", "FMC_A0"]},
+      { name: "PF1", location: left_left_pinout_div, functions: ["HSE LCK", "O", "I3C2_SCL", "I2C2_SCL", "FMC_A1"]},
+      { name: "VBAT", location: left_left_pinout_div, functions: ["Power supply for RTC when VDD is not present"]},
+      { name: "PC2", location: left_left_pinout_div, functions: ["IO", "PWR_CSLEEP", "SPI2_MISO/I2S2_SDI"], group: "IO"},
+      { name: "PC3", location: left_left_pinout_div, functions: ["IO", "PWR_CSTOP", "LPUART1_TX", "SPI2_MOSI/I2S2_SDO"], group: "IO"},
 
+      // CN7 EVEN PINS
+      { name: "PC11", location: left_right_pinout_div, functions: ["IO", "I3C2_SDA", "SPI3_MISO/I2S3_SDI", "USART3_RX"], group: "IO"},
+      { name: "PD2", location: left_right_pinout_div, functions: ["USB_FS_OVCR", "TIM3_ETR"]},
+      { name: "E5V", location: left_right_pinout_div, functions: ["External 5 volt power at 500mA"]},
+      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "NC", location: left_right_pinout_div, functions: []},
+      { name: "IOREF", location: left_right_pinout_div, functions: []},
+      { name: "NRST", location: left_right_pinout_div, functions: ["STM32H5 RESET"], group: "NRST"},
+      { name: "3V3", location: left_right_pinout_div, functions: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
+      { name: "5V", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button"]},
+      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "VIN", location: left_right_pinout_div, functions: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
+      { name: "NC", location: left_right_pinout_div, functions: []},
+      { name: "PA0", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button", "TIM2_CH1", "SPI3_RDY", "USART2_CTS/USART2_NSS", "FDCAN2_RX", "TIM2_ETR"]},
+      { name: "PA1", location: left_right_pinout_div, functions: ["ADC1_INP1", "TIM2_CH2", "LPTIM1_IN1", "USART2_RTS"], group: "PA1"},
+      { name: "PA2(*) /PB1(*)", location: left_right_pinout_div, functions: ["TIM2_CH3", "LPUART1_TX", "LPTIM1_IN2", "USART2_TX"]}, // HERE!!!
+      { name: "PB0", location: left_right_pinout_div, functions: ["ADC1_INP9", "TIM1_CH2N", "TIM3_CH3", "SPI3_MISO/I2S3_SDI", "USART2_TX"], group: "PB0"},
+      { name: "PC1(DEFAULT)/PB7", location: left_right_pinout_div, functions: ["ADC1_INP11 (PC1)", "I2C1_SDA (PB7)", "SPI2_MOSI/I2S2_SDO"], group: "PC1"},
+      { name: "PC0(DEFAULT)/PB6", location: left_right_pinout_div, functions: ["ADC1_INP10 (PC0)", "ADC1_INP10(PB6)", "SPI2_RDY", "FMC_A25"], group: "PC0"},
 
+      // CN10 ODD PINS
+      { name: "NC", location: right_left_pinout_div, functions: []},
+      { name: "PB6", location: right_left_pinout_div, functions: ["I2C1_SCL", "I3C1_SCL"], group: "PB6"},
+      { name: "PB7", location: right_left_pinout_div, functions: ["I2C1_SDA", "I3C1_SDA"], group: "PB7"},
+      { name: "AVDD", location: right_left_pinout_div, functions: ["AVDD is connected to VDD_MCU by default (R33 fitted)."], group: "AVDD"},
+      { name: "GND", location: right_left_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "PA5", location: right_left_pinout_div, functions: ["SPI1_SCK"], group: "PA5"},
+      { name: "PA6", location: right_left_pinout_div, functions: ["SPI1_MISO"], group: "PA6"},
+      { name: "PA7", location: right_left_pinout_div, functions: ["SPI1_MOSI", "TIM3_CH2"], group: "PA7"},
+      { name: "PC9", location: right_left_pinout_div, functions: ["SPIx_CS", "TIM3_CH4"], group: "PC9"},
+      { name: "PC6", location: right_left_pinout_div, functions: ["TIM3_CH1"], group: "PC6"},
+      { name: "PC7", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PA8", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PB10", location: right_left_pinout_div, functions: ["TIM2_CH3"], group: "PB10"},
+      { name: "PB4", location: right_left_pinout_div, functions: ["TIM3_CH1"], group: "PB4"},
+      { name: "PB5", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PB3", location: right_left_pinout_div, functions: ["TIM2_CH2", "T_SWO"], group: "PB3"},
+      { name: "PA10(*)/PB8(*)", location: right_left_pinout_div, functions: []}, // HERE!!!
+      { name: "PB14", location: right_left_pinout_div, functions: ["ARD_D1 (DEFAULT)", "STLINK_TX (T_VCP_TX)"], group: "PA14"},
+      { name: "PB15", location: right_left_pinout_div, functions: ["ARD_D0 (DEFAULT)", "STLINK_RX (T_VCP_RX)"], group: "PA15"},
 
+      // CN10 EVEN PINS
+      { name: "PC8(*)/PA9(*)", location: right_right_pinout_div, functions: ["TIM3_CH3", "FMC_NE2/FMC_NCE", "FMC_INT", "FMC_ALE"]}, // HERE!!!
+      { name: "PA10(*)", location: right_right_pinout_div, functions: ["TIM1_CH3", "LPUART1_RX", "LPTIM2_IN2", "UCPD1_FRSTX", "USART1_RX", "FDCAN2_TX"]}, // HERE!!!
+      { name: "PC5", location: right_right_pinout_div, functions: ["IO"]},
+      { name: "VBUS_STLK", location: right_right_pinout_div, functions: ["VBUS_STLK is the 5 V power from the STLINK-V3EC USB connector. It rises before the 5 V of the STM32H5 Nucleo-64 board."]},
+      { name: "NC", location: right_right_pinout_div, functions: []},
+      { name: "PA12", location: right_right_pinout_div, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PA11", location: right_right_pinout_div, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PB12", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "NC", location: right_right_pinout_div, functions: []},
+      { name: "GND", location: right_right_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "PB2", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PB1(*)", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PB15", location: right_right_pinout_div, functions: ["ARD_D0 (DEFAULT)", "STLINK_RX (T_VCP_RX)"], group: "PB15"},
+      { name: "PB14", location: right_right_pinout_div, functions: ["ARD_D1 (DEFAULT)", "STLINK_TX (T_VCP_TX)"], group: "PB14"},
+      { name: "PB13", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "AGND", location: right_right_pinout_div, functions: ["Analog Ground"]},
+      { name: "PC4", location: right_right_pinout_div, functions: []}, // HERE!!! FOR FUNCTIONS
+      { name: "PB8", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "NC", location: right_right_pinout_div, functions: []},
     ];
 
     const wrapper = document.getElementById("board-wrapper");
@@ -156,9 +246,9 @@
 
     // Create a marker element for each pin
     const markerEls = pins.map(pin => {
-      const boarrDiv = document.getElementById("board-wrapper");
+      const boardDiv = document.getElementById("board-wrapper");
       const el = document.createElement("div");
-      boarrDiv.appendChild(el);
+      boardDiv.appendChild(el);
       el.className = "pin-marker";
       el.style.left = pin.x + "px";
       el.style.top = pin.y + "px";
@@ -178,6 +268,36 @@
 
       wrapper.appendChild(el);
       return { el, pin };
+    });
+
+    // Pin Button Info
+    const pinInfoEls = pin_info.map(pin => {
+
+      // Creates and adds each function for the pin
+      const divLoc = document.getElementById(pin.location);
+      const el = document.createElement("div");
+      pin.functions.forEach((element, index, array) => {
+        const pinFunc = document.createElement("button");
+        pinFunc.classList.add('pin-element');
+        pinFunc.textContent = element;
+        el.appendChild(pinFunc);
+      });
+
+      // Creates and adds a tooltip about that specific pin
+      if(pin.hasOwnProperty("notes")) {
+        var noteTxt = "";
+        pin.functions.forEach((element, index, array) => {
+          noteTxt += element;
+        });
+        const noteEl = document.createElement("span");
+        noteEl.textContent = noteTxt;
+        noteEl.classList.add('tooltiptext');
+        el.classList.add('tooltip')
+        el.appendChild(noteEl);
+      }
+
+      el.classList.add('pin-info');
+      divLoc.appendChild(el);
     });
 
     function showTooltip(pin) {

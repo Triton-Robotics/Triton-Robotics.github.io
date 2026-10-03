@@ -59,12 +59,54 @@
 
   /* --- Pinout-info --- */
   .pin-info {
-    background-color: #1a1a2e;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: lightgray;
+    border: 2px solid black;
     color: white;
     margin: 3px;
-    padding: 2px;
-    width: 222px;
-    min-height: 35px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    width: 235px;
+    height: 34px;
+    visibility: visible;
+  }
+  
+  .pin-element {
+    display:inline-flex;
+    background-color: lightgray;
+    border: 1px solid black;
+    color: white;
+    vertical-align: top;
+    margin: 2px;
+    width: 70px;
+    height: 13.5px;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    font-size: 8px;
+    visibility: visible;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Tooltip text */
+  .tooltiptext {
+    visibility: hidden;
+    width: 130px;
+    background-color: black;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 8px;
+    position: absolute;
+    z-index: 1; /* Ensure tooltip is displayed above content */
+  }
+
+  /* Show the tooltip text on hover */
+  .tooltip:hover .tooltiptext {
     visibility: visible;
   }
 
@@ -72,9 +114,7 @@
   #board-wrapper {
     position: relative;
     display: inline;
-    zoom: 0.8
-    /* transform: scale(0.8); */
-    /* width: calc(15vmin + 24em); */
+    zoom: 0.65;
   }
   
   #board-img {
@@ -82,7 +122,6 @@
     min-width: 100px;
     display: block;
     object-fit: contain;
-    max-width: 100%;
   }
 
   .pin-marker {
