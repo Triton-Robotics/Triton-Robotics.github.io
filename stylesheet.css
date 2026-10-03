@@ -91,14 +91,16 @@
   /* Tooltip text */
   .tooltiptext {
     visibility: hidden;
-    width: 130px;
+    width: 260px;
     background-color: black;
     color: #ffffff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
     font-size: 8px;
-    position: absolute;
+    position: relative;
+    top: 20px;
+    /* left: -80px; */
     z-index: 1; /* Ensure tooltip is displayed above content */
   }
 

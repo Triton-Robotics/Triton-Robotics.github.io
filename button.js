@@ -170,23 +170,23 @@
       { name: "PC15", location: left_left_pinout_div, functions: ["LSE LCK", "IO"]},
       { name: "PF0", location: left_left_pinout_div, functions: ["HSE CLK", "I", "I3C2_SDA", "I2C2_SDA", "FMC_A0"]},
       { name: "PF1", location: left_left_pinout_div, functions: ["HSE LCK", "O", "I3C2_SCL", "I2C2_SCL", "FMC_A1"]},
-      { name: "VBAT", location: left_left_pinout_div, functions: ["Power supply for RTC when VDD is not present"]},
+      { name: "VBAT", location: left_left_pinout_div, functions: [], notes: ["Power supply for RTC when VDD is not present"]},
       { name: "PC2", location: left_left_pinout_div, functions: ["IO", "PWR_CSLEEP", "SPI2_MISO/I2S2_SDI"], group: "IO"},
       { name: "PC3", location: left_left_pinout_div, functions: ["IO", "PWR_CSTOP", "LPUART1_TX", "SPI2_MOSI/I2S2_SDO"], group: "IO"},
 
       // CN7 EVEN PINS
       { name: "PC11", location: left_right_pinout_div, functions: ["IO", "I3C2_SDA", "SPI3_MISO/I2S3_SDI", "USART3_RX"], group: "IO"},
       { name: "PD2", location: left_right_pinout_div, functions: ["USB_FS_OVCR", "TIM3_ETR"]},
-      { name: "E5V", location: left_right_pinout_div, functions: ["External 5 volt power at 500mA"]},
+      { name: "E5V", location: left_right_pinout_div, functions: [], notes: ["External 5 volt power at 500mA"]},
       { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
       { name: "NC", location: left_right_pinout_div, functions: []},
       { name: "IOREF", location: left_right_pinout_div, functions: []},
       { name: "NRST", location: left_right_pinout_div, functions: ["STM32H5 RESET"], group: "NRST"},
-      { name: "3V3", location: left_right_pinout_div, functions: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
+      { name: "3V3", location: left_right_pinout_div, functions: [], notes: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
       { name: "5V", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button"]},
       { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
       { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
-      { name: "VIN", location: left_right_pinout_div, functions: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
+      { name: "VIN", location: left_right_pinout_div, functions: [], notes: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
       { name: "NC", location: left_right_pinout_div, functions: []},
       { name: "PA0", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button", "TIM2_CH1", "SPI3_RDY", "USART2_CTS/USART2_NSS", "FDCAN2_RX", "TIM2_ETR"]},
       { name: "PA1", location: left_right_pinout_div, functions: ["ADC1_INP1", "TIM2_CH2", "LPTIM1_IN1", "USART2_RTS"], group: "PA1"},
@@ -220,10 +220,10 @@
       { name: "PC8(*)/PA9(*)", location: right_right_pinout_div, functions: ["TIM3_CH3", "FMC_NE2/FMC_NCE", "FMC_INT", "FMC_ALE"]}, // HERE!!!
       { name: "PA10(*)", location: right_right_pinout_div, functions: ["TIM1_CH3", "LPUART1_RX", "LPTIM2_IN2", "UCPD1_FRSTX", "USART1_RX", "FDCAN2_TX"]}, // HERE!!!
       { name: "PC5", location: right_right_pinout_div, functions: ["IO"]},
-      { name: "VBUS_STLK", location: right_right_pinout_div, functions: ["VBUS_STLK is the 5 V power from the STLINK-V3EC USB connector. It rises before the 5 V of the STM32H5 Nucleo-64 board."]},
+      { name: "VBUS_STLK", location: right_right_pinout_div, functions: [], notes: ["VBUS_STLK is the 5 V power from the STLINK-V3EC USB connector. It rises before the 5 V of the STM32H5 Nucleo-64 board."]},
       { name: "NC", location: right_right_pinout_div, functions: []},
-      { name: "PA12", location: right_right_pinout_div, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
-      { name: "PA11", location: right_right_pinout_div, functions: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PA12", location: right_right_pinout_div, functions: [], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PA11", location: right_right_pinout_div, functions: [], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
       { name: "PB12", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
       { name: "NC", location: right_right_pinout_div, functions: []},
       { name: "GND", location: right_right_pinout_div, functions: ["Ground"], group: "GND"},
@@ -271,9 +271,10 @@
       // Creates and adds a tooltip about that specific pin
       if(pin.hasOwnProperty("notes")) {
         var noteTxt = "";
-        pin.functions.forEach((element, index, array) => {
+        pin.notes.forEach((element, index, array) => {
           noteTxt += element;
         });
+        console.log(noteTxt);
         const noteEl = document.createElement("span");
         noteEl.textContent = noteTxt;
         noteEl.classList.add('tooltiptext');
