@@ -199,7 +199,7 @@
       { name: "NC", location: right_left_pinout_div, functions: []},
       { name: "PB6", location: right_left_pinout_div, functions: ["I2C1_SCL", "I3C1_SCL"], group: "PB6"},
       { name: "PB7", location: right_left_pinout_div, functions: ["I2C1_SDA", "I3C1_SDA"], group: "PB7"},
-      { name: "AVDD", location: right_left_pinout_div, functions: ["AVDD is connected to VDD_MCU by default (R33 fitted)."], group: "AVDD"},
+      { name: "AVDD", location: right_left_pinout_div, functions: [], notes: ["AVDD is connected to VDD_MCU by default (R33 fitted)."], group: "AVDD"},
       { name: "GND", location: right_left_pinout_div, functions: ["Ground"], group: "GND"},
       { name: "PA5", location: right_left_pinout_div, functions: ["SPI1_SCK"], group: "PA5"},
       { name: "PA6", location: right_left_pinout_div, functions: ["SPI1_MISO"], group: "PA6"},
@@ -237,6 +237,8 @@
       { name: "PB8", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
       { name: "NC", location: right_right_pinout_div, functions: []},
     ];
+
+    let tooltip_list = []
 
     const pin_to_info = new Map();
 
@@ -279,6 +281,8 @@
         noteEl.textContent = noteTxt;
         noteEl.classList.add('tooltiptext');
         el.classList.add('tooltip');
+        noteEl.classList.add('tooltiptext-hoverable');
+        tooltip_list.push(noteEl);
         el.appendChild(noteEl);
       }
 
@@ -299,6 +303,7 @@
     const tooltip = document.getElementById("tooltip");
     const searchInput = document.getElementById("search");
     const showAllBtn = document.getElementById("showAllBtn");
+    const hideTooltipsBtn = document.getElementById("hideTooltipsBtn");
     const matchCount = document.getElementById("matchCount");
 
     // Create a marker element for each pin
@@ -362,13 +367,19 @@
       if(!pin_to_info.has(hoveredPin.name.toLowerCase())) return;
 
       pin_to_info.get(hoveredPin.name.toLowerCase()).forEach(pin => {
-          pin.classList.add("group-highlight-" + (isByMouse ? "mouse" : "search"));
+          let name = (isByMouse ? "mouse" : "search")
+          pin.classList.add("group-highlight-" + name);
           (isByMouse ? mouse_current_highlighted : search_current_highlighted).push(pin);
+          pin.classList.add('visible-' + name);
       });
     }
  
     function clearGroupHighlight(isByMouse) {
-      (isByMouse ? mouse_current_highlighted : search_current_highlighted).forEach((el) => el.classList.remove("group-highlight-" + (isByMouse ? "mouse" : "search")));
+      let name = (isByMouse ? "mouse" : "search");
+      (isByMouse ? mouse_current_highlighted : search_current_highlighted).forEach((pin) => {
+        pin.classList.remove("group-highlight-" + name);
+        pin.classList.remove('visible-' + name);
+      });
     }
 
 
@@ -397,8 +408,32 @@
     searchInput.addEventListener("input", runSearch);
 
     showAllBtn.addEventListener("click", () => {
-      searchInput.value = "";
+      if(showAllBtn.textContent == "Show All") {
+        showAllBtn.textContent = "Hide All";
+        pinInfoEls.forEach(({ el, pin }) => {
+          el.style.visibility = 'visible';
+        });
+      } else {
+        showAllBtn.textContent = "Show All";
+        pinInfoEls.forEach(({ el, pin }) => {
+          el.style.visibility = 'hidden';
+        });
+      }
       runSearch();
+    });
+
+    hideTooltipsBtn.addEventListener("click", () => {
+      if(hideTooltipsBtn.textContent == "Show Tooltips") {
+        hideTooltipsBtn.textContent = "Hide Tooltips";
+        tooltip_list.forEach((element, index, array) => {
+          element.classList.add('tooltiptext-hoverable');
+        });
+      } else {
+        hideTooltipsBtn.textContent = "Show Tooltips";
+        tooltip_list.forEach((element, index, array) => {
+          element.classList.remove('tooltiptext-hoverable');
+        });
+      }
     });
 
 

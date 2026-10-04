@@ -30,16 +30,17 @@
     border-radius: 4px;
   }
 
-  #showAllBtn {
+  .interactableBtn {
     padding: 0.5rem 1rem;
     background: rgb(186, 189, 237);
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 129px;
     font-size: 0.95rem;
   }
 
-  #showAllBtn:hover {
+  .interactableBtn:hover {
     background: rgb(160, 163, 220);
   }
 
@@ -67,7 +68,11 @@
     padding-left: 10px;
     width: 235px;
     height: 34px;
-    visibility: visible;
+    visibility: hidden;
+  }
+
+  .visible-search, .visible-mouse {
+    visibility: visible !important;
   }
   
   .pin-element {
@@ -83,7 +88,6 @@
     color: green;
     font-weight: bold;
     font-size: 8px;
-    visibility: visible;
     justify-content: center;
     align-items: center;
   }
@@ -105,7 +109,7 @@
   }
 
   /* Show the tooltip text on hover */
-  .tooltip:hover .tooltiptext {
+  .tooltip:hover .tooltiptext-hoverable {
     visibility: visible;
   }
 
