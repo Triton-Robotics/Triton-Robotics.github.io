@@ -59,15 +59,15 @@
   .pin-info {
     display: flex;
     flex-wrap: wrap;
-    background-color: lightgray;
+    background-color: rgb(99, 199, 197);
     border: 2px solid black;
     color: white;
     margin: 3px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 10px;
-    width: 235px;
-    height: 34px;
+    width: 243px;
+    min-height: 34px;
     visibility: hidden;
   }
 
@@ -77,17 +77,17 @@
   
   .pin-element {
     display:inline-flex;
-    background-color: lightgray;
+    background-color: rgb(132, 195, 213);
     border: 1px solid black;
     color: white;
     vertical-align: top;
     margin: 2px;
-    width: 70px;
+    min-width: 50px;
     height: 13.5px;
     text-align: center;
-    color: green;
+    color: black;
     font-weight: bold;
-    font-size: 8px;
+    font-size: 14.5px;
     justify-content: center;
     align-items: center;
   }
@@ -95,16 +95,16 @@
   /* Tooltip text */
   .tooltiptext {
     visibility: hidden;
-    width: 260px;
+    width: 100%;
     background-color: black;
     color: #ffffff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-    font-size: 8px;
-    position: relative;
-    top: 20px;
-    /* left: -80px; */
+    font-size: 12px;
+    position: absolute;
+    top: 100%;
+    left: 0px;
     z-index: 1; /* Ensure tooltip is displayed above content */
   }
 
@@ -180,10 +180,10 @@
 
 
   /* --- Tooltip --- */
-  #tooltip {
-    position: absolute;
-    display: none;
-    background: #1a1a2e;
+  .tooltip {
+    position: relative;
+    display: hidden;
+    /* background: #1a1a2e;
     color: white;
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
@@ -191,7 +191,7 @@
     max-width: 240px;
     pointer-events: none;
     z-index: 10;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); */
   }
 
   #tooltip .pin-name {

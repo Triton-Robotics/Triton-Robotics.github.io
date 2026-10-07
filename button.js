@@ -59,10 +59,10 @@
       { name: "NC", x: 54, y: 585},
       { name: "PA0", x: 54, y: 608.5},
       { name: "PA1", x: 54, y: 632},
-      { name: "PA2(*) /PB1(*)", x: 54, y: 655.5},
+      { name: "NC", x: 54, y: 655.5},
       { name: "PB0", x: 54, y: 679},
-      { name: "PC1(DEFAULT)/PB7", x: 54, y: 702.5},
-      { name: "PC0(DEFAULT)/PB6", x: 54, y: 726},
+      { name: "PC1", x: 54, y: 702.5},
+      { name: "PC0", x: 54, y: 726},
       
       // CN6 POWER
       { name: "NC", x: 100, y: 397},
@@ -77,10 +77,10 @@
       // CN8 ANALOG
       { name: "PA0", x: 100, y: 611},
       { name: "PA1", x: 100, y: 634.5},
-      { name: "PA2/PB1", x: 100, y: 658},
+      { name: "NC", x: 100, y: 658},
       { name: "PB0", x: 100, y: 681.5},
-      { name: "PC1(DEFAULT)/PB7", x: 100, y: 705},
-      { name: "PC0(DEFAULT)/PB6", x: 100, y: 728.5},
+      { name: "PC1", x: 100, y: 705},
+      { name: "PC0", x: 100, y: 728.5},
 
     // Right Group
 
@@ -102,9 +102,9 @@
         { name: "PB4", x: 553, y: 609},
         { name: "PB5", x: 553, y: 632.5},
         { name: "PB3", x: 553, y: 656},
-        { name: "PA10(*)/PC8(*)", x: 553, y: 679.5},
-        { name: "PB14(DEFAULT)/PA4(*)/P2(*)", x: 553, y: 705},  
-        { name: "PB15(DEFAULT)/PA3(*)", x: 553, y: 730},
+        { name: "NC", x: 553, y: 679.5},
+        { name: "PB14", x: 553, y: 705},  
+        { name: "PB15", x: 553, y: 730},
 
 
         // CN10 ODD PINS
@@ -124,23 +124,23 @@
         { name: "PB4", x: 600, y: 606.5},
         { name: "PB5", x: 600, y: 630},
         { name: "PB3", x: 600, y: 653.5},
-        { name: "PA10(*)/PB8(*)", x: 600, y: 677},
+        { name: "NC", x: 600, y: 677},
         { name: "PB14", x: 600, y: 700.5},
         { name: "PB15", x: 600, y: 724},
 
         // CN10 EVEN PINS
-        { name: "PC8(*)/PA9(*)", x: 625, y: 301},
-        { name: "PA10(*)", x: 625, y: 324.5},
+        { name: "NC", x: 625, y: 301},
+        { name: "NC", x: 625, y: 324.5},
         { name: "PC5", x: 625, y: 348},
         { name: "VBUS_STLK", x: 625, y: 371.5},
         { name: "NC", x: 625, y: 395},
         { name: "PA12", x: 625, y: 418.5},
         { name: "PA11", x: 625, y: 442},
         { name: "PB12", x: 625, y: 465.5},
-        { name: "", x: 625, y: 489},
+        { name: "NC", x: 625, y: 489},
         { name: "GND", x: 625, y: 512.5},
         { name: "PB2", x: 625, y: 536},
-        { name: "PB1(*)", x: 625, y: 559.5},
+        { name: "NC", x: 625, y: 559.5},
         { name: "PB15", x: 625, y: 583},
         { name: "PB14", x: 625, y: 606.5},
         { name: "PB13", x: 625, y: 630},
@@ -154,87 +154,87 @@
 
     //Left Group     
       // CN7 ODD PINS
-      { name: "PC10", location: left_left_pinout_div, functions: ["IO", "I3C2_SCL" , "SPI3_SCK/I2S3_CK" , "USART3_TX"]}, // HERE!! FOR FUNCTIONS
-      { name: "PC12", location: left_left_pinout_div, functions: ["IO", "LPTIM2_CH2", "SPI3_MOSI/I2S3_SDO", "USART3_CK"], group: "IO"},
-      { name: "VDD", location: left_left_pinout_div, functions: ["VDD voltage supply"]},
-      { name: "BOOT0", location: left_left_pinout_div, functions: ["BOOT0"]},
+      { name: "PC10", location: left_left_pinout_div, functions: ["I3C2SCL", "SPI3SCK", "I2S3CK", "USART3TX", "OCTOSPI1_IO1", "SDMMC1_D2", "DCMI_D8", "PSSI_D8"]},
+      { name: "PC12", location: left_left_pinout_div, functions: ["IO", "TRACED3", "TIM15CH1", "LPTIM2CH2", "SPI3MOSI", "I2S3SDO", "USART3CK", "UART5TX", "SDMMC1_CK", "DCMI_D9", "PSSI_D9"]},
+      { name: "VDD", location: left_left_pinout_div, functions: []},
+      { name: "BOOT0", location: left_left_pinout_div, functions: [], notes: ["BOOT0 is set to ‘0’ by default. It can be set to ‘1’ with a jumper plugged between pin 5 (VDD) and pin 7 (BOOT0) of CN7."]},
       { name: "NC", location: left_left_pinout_div, functions: []},
       { name: "NC", location: left_left_pinout_div, functions: []},
-      { name: "PA13", location: left_left_pinout_div, functions: ["T_SWDIO"]},
-      { name: "PA14", location: left_left_pinout_div, functions: ["T_SWCLK"]},
-      { name: "PA15", location: left_left_pinout_div, functions: ["T_JTDI", "TIM2_CH1", "SPI1_NSS/I2S1_WS", "SPI3_NSS/I2S3_WS", "USART1_TX", "FMC_NBL1", "TIM2_ETR"]},
-      { name: "GND", location: left_left_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "PA13", location: left_left_pinout_div, functions: ["JTMS", "SWDIO"], "notes": ["After reset, these pins are configured as JTAG/SW debug alternate functions. The internal pull-up on PA15, PA13, PB4 pins and the internal pull-down on PA14 pin are activated too."]},
+      { name: "PA14", location: left_left_pinout_div, functions: ["JTCK", "SWCLK"], "notes": ["After reset, these pins are configured as JTAG/SW debug alternate functions. The internal pull-up on PA15, PA13, PB4 pins and the internal pull-down on PA14 pin are activated too"]},
+      { name: "PA15", location: left_left_pinout_div, functions: ["JTDI", "TIM2CH1", "HDMIEC", "SPI1NSS", "I2S1WS", "SPI3NSS", "I2S3WS", "USART1TX", "UART4RTS", "UART4DE", "OCTOSPI1_NCS", "FMCNBL1", "DCMI_D11", "PSSI_D11", "TIM2ETR"], "notes": ["After reset, these pins are configured as JTAG/SW debug alternate functions. The internal pull-up on PA15, PA13, PB4 pins and the internal pull-down on PA14 pin are activated too."]},
+      { name: "GND", location: left_left_pinout_div, functions: []},
       { name: "NC", location: left_left_pinout_div, functions: []},
-      { name: "PC13", location: left_left_pinout_div, functions: ["USER button (DEFAULT)", "IO"]},
+      { name: "PC13", location: left_left_pinout_div, functions: ["USER button", "IO"], "notes": ["As input, only PC13, PA0, PA1, and PA2 are functional in Standby and VBAT modes. As output, only PC13 and and PA1 are functional in Standby and VBAT modes"]},
       { name: "PC14", location: left_left_pinout_div, functions: ["LSE CLK", "IO"]},
       { name: "PC15", location: left_left_pinout_div, functions: ["LSE LCK", "IO"]},
-      { name: "PF0", location: left_left_pinout_div, functions: ["HSE CLK", "I", "I3C2_SDA", "I2C2_SDA", "FMC_A0"]},
-      { name: "PF1", location: left_left_pinout_div, functions: ["HSE LCK", "O", "I3C2_SCL", "I2C2_SCL", "FMC_A1"]},
+      { name: "PF0", location: left_left_pinout_div, functions: ["I3C2_SDA", "I2C2_SDA", "FMC_A0", "HSE CLK", "I"]},
+      { name: "PF1", location: left_left_pinout_div, functions: ["I3C2_SCL", "I2C2_SCL", "FMC_A1", "HSE LCK", "O"]},
       { name: "VBAT", location: left_left_pinout_div, functions: [], notes: ["Power supply for RTC when VDD is not present"]},
-      { name: "PC2", location: left_left_pinout_div, functions: ["IO", "PWR_CSLEEP", "SPI2_MISO/I2S2_SDI"], group: "IO"},
-      { name: "PC3", location: left_left_pinout_div, functions: ["IO", "PWR_CSTOP", "LPUART1_TX", "SPI2_MOSI/I2S2_SDO"], group: "IO"},
+      { name: "PC2", location: left_left_pinout_div, functions: ["PWR_CSLEEP", "TIM4_CH4", "SPI2_MISO", "I2S2_SDI", "OCTOSPI1_IO5", "OCTOSPI1_IO2", "IO"]},
+      { name: "PC3", location: left_left_pinout_div, functions: ["PWR_CSTOP", "LPUART1_TX", "SPI2_MOSI", "I2S2_SDO", "OCTOSPI1_IO6", "OCTOSPI1_IO0", "IO"]},
 
       // CN7 EVEN PINS
-      { name: "PC11", location: left_right_pinout_div, functions: ["IO", "I3C2_SDA", "SPI3_MISO/I2S3_SDI", "USART3_RX"], group: "IO"},
-      { name: "PD2", location: left_right_pinout_div, functions: ["USB_FS_OVCR", "TIM3_ETR"]},
-      { name: "E5V", location: left_right_pinout_div, functions: [], notes: ["External 5 volt power at 500mA"]},
-      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
+      { name: "PC11", location: left_right_pinout_div, functions: ["I3C2_SDA", "SPI3_MISO", "I2S3_SDI", "USART3_RX", "UART4_RX", "OCTOSPI1_NCS", "SDMMC1_D3", "DCMI_D4", "PSSI_D4", "IO"]},
+      { name: "PD2", location: left_right_pinout_div, functions: ["TRACED2", "TIM3_ETR", "TIM15_BKIN", "UART5_RX", "SDMMC1_CMD", "DCMI_D11", "PSSI_D11", "USB_FS_OVCR"]},
+      { name: "E5V", location: left_right_pinout_div, functions: [], notes: ["5 V, 500 mA maximum"]},
+      { name: "GND", location: left_right_pinout_div, functions: []},
       { name: "NC", location: left_right_pinout_div, functions: []},
       { name: "IOREF", location: left_right_pinout_div, functions: []},
-      { name: "NRST", location: left_right_pinout_div, functions: ["STM32H5 RESET"], group: "NRST"},
-      { name: "3V3", location: left_right_pinout_div, functions: [], notes: ["3V3 output (3V-3.6V, max 1.3A)"], group: "3V3"},
-      { name: "5V", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button"]},
-      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
-      { name: "GND", location: left_right_pinout_div, functions: ["Ground"], group: "GND"},
-      { name: "VIN", location: left_right_pinout_div, functions: [], notes: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"], group: "VIN"},
+      { name: "NRST", location: left_right_pinout_div, functions: []},
+      { name: "3V3", location: left_right_pinout_div, functions: [], notes: ["3V3 output (3V-3.6V, max 1.3A)"]},
+      { name: "5V", location: left_right_pinout_div, functions: []},
+      { name: "GND", location: left_right_pinout_div, functions: []},
+      { name: "GND", location: left_right_pinout_div, functions: []},
+      { name: "VIN", location: left_right_pinout_div, functions: [], notes: ["Power Input (7V = 800mA, (7V, 9V) = 450mA, [9V, 12V] = 250mA)"]},
       { name: "NC", location: left_right_pinout_div, functions: []},
-      { name: "PA0", location: left_right_pinout_div, functions: ["ADC1_INP0 (DEFAULT)", "User button", "TIM2_CH1", "SPI3_RDY", "USART2_CTS/USART2_NSS", "FDCAN2_RX", "TIM2_ETR"]},
-      { name: "PA1", location: left_right_pinout_div, functions: ["ADC1_INP1", "TIM2_CH2", "LPTIM1_IN1", "USART2_RTS"], group: "PA1"},
-      { name: "PA2(*) /PB1(*)", location: left_right_pinout_div, functions: ["TIM2_CH3", "LPUART1_TX", "LPTIM1_IN2", "USART2_TX"]}, // HERE!!!
-      { name: "PB0", location: left_right_pinout_div, functions: ["ADC1_INP9", "TIM1_CH2N", "TIM3_CH3", "SPI3_MISO/I2S3_SDI", "USART2_TX"], group: "PB0"},
-      { name: "PC1(DEFAULT)/PB7", location: left_right_pinout_div, functions: ["ADC1_INP11 (PC1)", "I2C1_SDA (PB7)", "SPI2_MOSI/I2S2_SDO"], group: "PC1"},
-      { name: "PC0(DEFAULT)/PB6", location: left_right_pinout_div, functions: ["ADC1_INP10 (PC0)", "ADC1_INP10(PB6)", "SPI2_RDY", "FMC_A25"], group: "PC0"},
+      { name: "PA0", location: left_right_pinout_div, functions: ["TIM2_CH1", "TIM5_CH1", "TIM8_ETR", "TIM15_BKIN", "SPI4_SCK", "SPI3_RDY", "USART2_CTS", "USART2_NSS", "UART4_TX", "FDCAN2_RX", "TIM2_ETR", "ADC1_INP0", "User button"], notes: ["As input, only PC13, PA0, PA1, and PA2 are functional in Standby and VBAT modes. As output, only PC13 and and PA1 are functional in Standby and VBAT modes."]},
+      { name: "PA1", location: left_right_pinout_div, functions: ["TIM2_CH2", "TIM5_CH2", "TIM15_CH1N", "LPTIM1_IN1", "OCTOSPI1_DQS", "USART2_RTS", "USART2_DE", "UART4_RX", "OCTOSPI1_IO3", "USART6_CK", "ADC1_INP1"], notes: ["As input, only PC13, PA0, PA1, and PA2 are functional in Standby and VBAT modes. As output, only PC13 and and PA1 are functional in Standby and VBAT modes."]},
+      { name: "NC", location: left_right_pinout_div, functions: []},
+      { name: "PB0", location: left_right_pinout_div, functions: ["TIM1_CH2N", "TIM3_CH3", "TIM8_CH2N", "SPI3_MISO", "I2S3_SDI", "OCTOSPI1_IO1", "USART2_TX", "UART4_CTS", "ADC1_INP9"]},
+      { name: "PC1", location: left_right_pinout_div, functions: ["TRACED0", "SPI2_MOSI", "I2S2_SDO", "SPI4_MOSI", "OCTOSPI1_IO4", "ADC1_INP11"]},
+      { name: "PC0", location: left_right_pinout_div, functions: ["SPI4_MISO", "SPI2_RDY", "FMC_A25", "OCTOSPI1_IO7", "ADC1_INP10"]},
 
       // CN10 ODD PINS
       { name: "NC", location: right_left_pinout_div, functions: []},
-      { name: "PB6", location: right_left_pinout_div, functions: ["I2C1_SCL", "I3C1_SCL"], group: "PB6"},
-      { name: "PB7", location: right_left_pinout_div, functions: ["I2C1_SDA", "I3C1_SDA"], group: "PB7"},
-      { name: "AVDD", location: right_left_pinout_div, functions: [], notes: ["AVDD is connected to VDD_MCU by default (R33 fitted)."], group: "AVDD"},
-      { name: "GND", location: right_left_pinout_div, functions: ["Ground"], group: "GND"},
-      { name: "PA5", location: right_left_pinout_div, functions: ["SPI1_SCK"], group: "PA5"},
-      { name: "PA6", location: right_left_pinout_div, functions: ["SPI1_MISO"], group: "PA6"},
-      { name: "PA7", location: right_left_pinout_div, functions: ["SPI1_MOSI", "TIM3_CH2"], group: "PA7"},
-      { name: "PC9", location: right_left_pinout_div, functions: ["SPIx_CS", "TIM3_CH4"], group: "PC9"},
-      { name: "PC6", location: right_left_pinout_div, functions: ["TIM3_CH1"], group: "PC6"},
-      { name: "PC7", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "PA8", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "PB10", location: right_left_pinout_div, functions: ["TIM2_CH3"], group: "PB10"},
-      { name: "PB4", location: right_left_pinout_div, functions: ["TIM3_CH1"], group: "PB4"},
-      { name: "PB5", location: right_left_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "PB3", location: right_left_pinout_div, functions: ["TIM2_CH2", "T_SWO"], group: "PB3"},
-      { name: "PA10(*)/PB8(*)", location: right_left_pinout_div, functions: []}, // HERE!!!
-      { name: "PB14", location: right_left_pinout_div, functions: ["ARD_D1 (DEFAULT)", "STLINK_TX (T_VCP_TX)"], group: "PA14"},
-      { name: "PB15", location: right_left_pinout_div, functions: ["ARD_D0 (DEFAULT)", "STLINK_RX (T_VCP_RX)"], group: "PA15"},
+      { name: "PB6", location: right_left_pinout_div, functions: ["TIM4_CH1", "I3C1_SCL", "I2C1_SCL", "HDMI_CEC", "USART6_RX", "USART1_TX", "LPUART1_TX", "FDCAN2_TX", "OCTOSPI1_NCS", "DCMI_D5", "PSSI_D5", "UART5_TX"]},
+      { name: "PB7", location: right_left_pinout_div, functions: ["TIM4_CH2", "I3C1_SDA", "I2C1_SDA", "SPI4_MISO", "USART6_CTS", "USART6_NSS", "USART1_RX", "LPUART1_RX", "FDCAN1_TX", "FMC_NL", "DCMI_VSYNC", "PSSI_RDY"]},
+      { name: "AVDD", location: right_left_pinout_div, functions: [], notes: ["AVDD is connected to VDD_MCU by default (R33 fitted)."]},
+      { name: "GND", location: right_left_pinout_div, functions: []},
+      { name: "PA5", location: right_left_pinout_div, functions: ["TIM2_CH1", "TIM8_CH1N", "SPI1_SCK", "I2S1_CK", "PSSI_D14", "TIM2_ETR"], notes: ["To light LD2, a high logic state '1' must be written into the corresponding GPIO PA5/D13. A transistor is used to drive the LD2"]},
+      { name: "PA6", location: right_left_pinout_div, functions: ["TIM1_BKIN", "TIM3_CH1", "TIM8_BKIN", "SPI1_MISO", "I2S1_SDI", "OCTOSPI1_IO3", "DCMI_PIXCLK", "PSSI_PDCK"]},
+      { name: "PA7", location: right_left_pinout_div, functions: ["TIM1_CH1N", "TIM3_CH2", "TIM8_CH1N", "SPI1_MOSI", "I2S1_SDO", "OCTOSPI1_IO2", "FMC_NWE"]},
+      { name: "PC9", location: right_left_pinout_div, functions: ["MCO2", "TIM3_CH4", "TIM8_CH4", "I2C3_SDA", "AUDIOCLK", "UART5_CTS", "OCTOSPI1_IO0", "FMC_CLE", "SDMMC1_D1", "DCMI_D3", "PSSI_D3", "SPIx_CS"]},
+      { name: "PC6", location: right_left_pinout_div, functions: ["TIM3_CH1", "TIM8_CH1", "I2S2_MCK", "USART6_TX", "SDMMC1_D0DIR", "FMC_NWAIT", "I3C2_SCL", "OCTOSPI1_IO5", "SDMMC1_D6", "DCMI_D0", "PSSI_D0"]},
+      { name: "PC7", location: right_left_pinout_div, functions: ["TRGIO", "TIM3_CH2", "TIM8_CH2", "I2S3_MCK", "USART6_RX", "SDMMC1_D123DIR", "FMC_NE1", "I3C2_SDA", "OCTOSPI1_IO6", "SDMMC1_D7", "DCMI_D1", "PSSI_D1", "IO"]},
+      { name: "PA8", location: right_left_pinout_div, functions: ["MCO1", "TIM1_CH1", "TIM8_BKIN2", "I2C3_SCL", "SPI1_RDY", "SPI4_MOSI", "USART1_CK", "I3C2_SCL", "USB_SOF", "FMC_NOE", "DCMI_D3", "PSSI_D3", "IO"]},
+      { name: "PB10", location: right_left_pinout_div, functions: ["TIM2_CH3", "TIM8_CH1", "LPTIM2_IN1", "I2C2_SCL", "SPI2_SCK", "I2S2_CK", "USART3_TX", "OCTOSPI1_NCS"]},
+      { name: "PB4", location: right_left_pinout_div, functions: ["NJTRST", "TIM3_CH1", "OCTOSPI1_CLK", "LPTIM1_CH2", "SPI1_MISO", "I2S1_SDI", "SPI3_MISO", "I2S3_SDI", "SPI2_NSS", "I2S2_WS", 'I2C3_SDA', "I3C2_SDA", "DCMI_D7", "PSSI_D7"], "notes": ["After reset, these pins are configured as JTAG/SW debug alternate functions. The internal pull-up on PA15, PA13, PB4 pins and the internal pull-down on PA14 pin are activated too."]},
+      { name: "PB5", location: right_left_pinout_div, functions: ["TIM3_CH2", "OCTOSPI1_NCLK", "I2C1_SMBA", "SPI1_MOSI", "I2S1_SDO", "USART6_TX", "SPI3_MOSI", "I2S3_SDO", "FDCAN2_RX", "I3C2_SCL", "DCMI_D10", "PSSI_D10", "UART5_RX", "IO"],"notes": ["It is recommended that PF10/PB5, PB4/PB5, and PA3/PB5 are in line with crossing specification"]},
+      { name: "PB3", location: right_left_pinout_div, functions: ["JTDO", "TRACESWO", "TIM2_CH2", "I3C2_SCL", "I2C2_SDA", "SPI1_SCK", "I2S1_CK", "SPI3_SCK", "I2S3_CK", "LPUART1_TX", "FDCAN2_TX", "CRS_SYNC", "UART5_TX"]},
+      { name: "NC", location: right_left_pinout_div, functions: []},
+      { name: "PB14", location: right_left_pinout_div, functions: ["TIM1_CH2N", "TIM12_CH1", "TIM8_CH2N", "USART1_TX", "SPI2_MISO", "I2S2_SDI", "USART3_RTS", "USART3_DE", "UART4_RTS", "UART4_DE"]},
+      { name: "PB15", location: right_left_pinout_div, functions: ["RTC_REFIN", "TIM1_CH3N", "TIM12_CH2", "TIM8_CH3N", "USART1_RX", "SPI2_MOSI", "I2S2_SDO", "SPI1_MOSI", "I2S1_SDO", "UART4_CTS", "OCTOSPI1_CLK", "DCMI_D2", "PSSI_D2", "UART5_RX"]},
 
       // CN10 EVEN PINS
-      { name: "PC8(*)/PA9(*)", location: right_right_pinout_div, functions: ["TIM3_CH3", "FMC_NE2/FMC_NCE", "FMC_INT", "FMC_ALE"]}, // HERE!!!
-      { name: "PA10(*)", location: right_right_pinout_div, functions: ["TIM1_CH3", "LPUART1_RX", "LPTIM2_IN2", "UCPD1_FRSTX", "USART1_RX", "FDCAN2_TX"]}, // HERE!!!
-      { name: "PC5", location: right_right_pinout_div, functions: ["IO"]},
+      { name: "NC", location: right_right_pinout_div, functions: []},
+      { name: "NC", location: right_right_pinout_div, functions: []},
+      { name: "PC5", location: right_right_pinout_div, functions: ["TIM1_CH4N", "PSSI_D15", "SPI4_SCK", "OCTOSPI1_DQS", "IO"]},
       { name: "VBUS_STLK", location: right_right_pinout_div, functions: [], notes: ["VBUS_STLK is the 5 V power from the STLINK-V3EC USB connector. It rises before the 5 V of the STM32H5 Nucleo-64 board."]},
       { name: "NC", location: right_right_pinout_div, functions: []},
-      { name: "PA12", location: right_right_pinout_div, functions: [], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
-      { name: "PA11", location: right_right_pinout_div, functions: [], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
-      { name: "PB12", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "PA12", location: right_right_pinout_div, functions: ["TIM1_ETR", "LPUART1_RTS", "LPUART1_DE", "SPI2_SCK", "I2S2_CK", "UART4_TX", "USART1_RTS", "USART1_DE", "FDCAN1_TX", "USB_DP", "USB_FS_P"], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PA11", location: right_right_pinout_div, functions: ["TIM1_CH4", "LPUART1_CTS", "SPI2_NSS", "I2S2_WS", "UART4_RX", "USART1_CTS", "USART1_NSS", "FDCAN1_RX", "USB_DM", "USB_FS_N"], notes: ["PA11 and PA12 are shared with USB signals connected to a USB Type-C® connector. It is not recommended to use them as I/O pins. By default, they are connected to D+/D- signals (SB13 and SB17 ON)."]},
+      { name: "PB12", location: right_right_pinout_div, functions: ["TIM1_BKIN", "TIM8_CH3", "OCTOSPI1_NCLK", "I2C2_SDA", "SPI2_NSS", "I2S2_WS", "UCPD1_FRSTX", "USART3_CK", "FDCAN2_RX", "UART5_RX", "IO"]},
       { name: "NC", location: right_right_pinout_div, functions: []},
-      { name: "GND", location: right_right_pinout_div, functions: ["Ground"], group: "GND"},
-      { name: "PB2", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "PB1(*)", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "PB15", location: right_right_pinout_div, functions: ["ARD_D0 (DEFAULT)", "STLINK_RX (T_VCP_RX)"], group: "PB15"},
-      { name: "PB14", location: right_right_pinout_div, functions: ["ARD_D1 (DEFAULT)", "STLINK_TX (T_VCP_TX)"], group: "PB14"},
-      { name: "PB13", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
-      { name: "AGND", location: right_right_pinout_div, functions: ["Analog Ground"]},
-      { name: "PC4", location: right_right_pinout_div, functions: []}, // HERE!!! FOR FUNCTIONS
-      { name: "PB8", location: right_right_pinout_div, functions: ["IO"], group: "IO"},
+      { name: "GND", location: right_right_pinout_div, functions: []},
+      { name: "PB2", location: right_right_pinout_div, functions: ["RTC_OUT2", "TIM8_CH4N", "SPI1_RDY", "LPTIM1_CH1", "SPI2_SCK", "I2S2_CK", "SPI3_MOSI", "I2S3_SDO", "OCTOSPI1_CLK", "OCTOSPI1_DQS", "SDMMC1_CMD", "IO"]},
+      { name: "NC", location: right_right_pinout_div, functions: []},
+      { name: "PB15", location: right_right_pinout_div, functions: ["RTC_REFIN", "TIM1_CH3N", "TIM12_CH2", "TIM8_CH3N", "USART1_RX", "SPI2_MOSI", "I2S2_SDO", "SPI1_MOSI", "I2S1_SDO", "UART4_CTS", "OCTOSPI1_CLK", "DCMI_D2", "PSSI_D2", "UART5_RX"]},
+      { name: "PB14", location: right_right_pinout_div, functions: ["TIM1_CH2N", "TIM12_CH1", "TIM8_CH2N", "USART1_TX", "SPI2_MISO", "I2S2_SDI", "USART3_RTS", "USART3_DE", "UART4_RTS", "UART4_DE"]},
+      { name: "PB13", location: right_right_pinout_div, functions: ["TIM1_CH1N", "TIM8_CH2", "LPTIM2_CH1", "I2C2_SMBA", "SPI2_SCK", "I2S2_CK", "USART3_CTS", "USART3_NSS","LPUART1_RX", "FDCAN2_TX", "SDMMC1_D0", "UART5_TX", "IO"]},
+      { name: "AGND", location: right_right_pinout_div, functions: []},
+      { name: "PC4", location: right_right_pinout_div, functions: ["TIM2_CH4", "LPTIM2_ETR", "I2S1_MCK", "USART3_RX"]},
+      { name: "PB8", location: right_right_pinout_div, functions: ["TIM4_CH3", "I3C1_SCL", "I2C1_SCL", "SPI4_RDY", "SPI3_NSS", "I2S3_WS", "SDMMC1_CKIN", "UART4_RX", "FDCAN1_RX", "SDMMC1_D4", "DCMI_D6", "PSSI_D6", "IO"]},
       { name: "NC", location: right_right_pinout_div, functions: []},
     ];
 
@@ -274,7 +274,7 @@
       if(pin.hasOwnProperty("notes")) {
         var noteTxt = "";
         pin.notes.forEach((element, index, array) => {
-          noteTxt += element;
+          noteTxt += element + "\n\n";
         });
         console.log(noteTxt);
         const noteEl = document.createElement("span");
@@ -328,7 +328,6 @@
         highlightGroup(pin, true);
     });
 
-    // el.addEventListener("mousemove", (e) => positionTooltip(e));
     el.addEventListener("mouseleave", () => {
         // hideTooltip();
         clearGroupHighlight(true);
@@ -337,28 +336,6 @@
       wrapper.appendChild(el);
       return { el, pin };
     });
-
-    // function showTooltip(pin) {
-    //   const groupNote = pin.group
-    //     ? `<div style="opacity:0.7; font-size:0.75rem; margin-top:0.25rem;">connected to ${pins.filter(p => p.group === pin.group).length - 1} other ${pin.group} pin(s)</div>`
-    //     : "";
-    //   tooltip.innerHTML = `
-    //     <div class="pin-name">${pin.name}</div>
-    //     <ul>${pin.functions.map(f => `<li>${f}</li>`).join("")}</ul>
-    //     ${groupNote}
-    //   `;
-    //   tooltip.style.display = "block";
-    // }
-
-    // function positionTooltip(e) {
-    //   const rect = wrapper.getBoundingClientRect();
-    //   tooltip.style.left = (e.clientX - rect.left + 15) + "px";
-    //   tooltip.style.top = (e.clientY - rect.top + 15) + "px";
-    // }
-
-    // function hideTooltip() {
-    //   tooltip.style.display = "none";
-    // }
 
     let mouse_current_highlighted = [];
     let search_current_highlighted = [];
