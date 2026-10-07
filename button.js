@@ -290,6 +290,8 @@
           highlightGroup(pin, true);
       });
 
+      el.addEventListener("click", () => togglePinned(pin));
+
       el.addEventListener("mouseleave", () => {
           clearGroupHighlight(true);
       });
@@ -328,6 +330,8 @@
         highlightGroup(pin, true);
     });
 
+    el.addEventListener("click", () => togglePinned(pin));   
+
     el.addEventListener("mouseleave", () => {
         // hideTooltip();
         clearGroupHighlight(true);
@@ -348,6 +352,24 @@
           pin.classList.add("group-highlight-" + name);
           (isByMouse ? mouse_current_highlighted : search_current_highlighted).push(pin);
           pin.classList.add('visible-' + name);
+      });
+    }
+
+    const pinnedNames = new Set();
+
+    
+    function togglePinned(pin) {
+      const key = pin.name.toLowerCase();
+      const els = pin_to_info.get(key);
+      if (!els) return;
+
+      const nowPinned = !pinnedNames.has(key);
+      if (nowPinned) pinnedNames.add(key);
+      else pinnedNames.delete(key);
+
+      els.forEach(el => {
+        el.classList.toggle("group-highlight-pinned", nowPinned);
+        el.classList.toggle("visible-pinned", nowPinned);
       });
     }
  
